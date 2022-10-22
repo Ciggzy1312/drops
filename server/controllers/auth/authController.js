@@ -47,10 +47,6 @@ const login = async (req, res) => {
     }
 }
 
-const logout = async (req, res) => {
-    res.status(200).send("Logging out user...");
-}
-
 module.exports = {
     register,
     login,
