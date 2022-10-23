@@ -1,17 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
+const { getDrop, getDrops, createDrop } = require('../../controllers/drop/dropController');
 
-router.get('/', (req, res) => {
-    res.status(200).json({ message: "Get drops" });
-});
+router.get('/', getDrops);
 
-router.get('/:id', (req, res) => {
-    res.status(200).json({ message: "Get drop by id" });
-});
+router.get('/:id', getDrop);
 
-router.post('/', (req, res) => {
-    res.status(200).json({ message: "Create drop" });
-});
+router.post('/', createDrop);
 
 module.exports = router;
