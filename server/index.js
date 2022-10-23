@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api/auth', require('./routes/auth/authRoute'));
+app.use('/api/drop', require('./routes/drop/dropRoute'));
 
 app.listen(5000, () => {
     console.log('Listening on 5000....');
