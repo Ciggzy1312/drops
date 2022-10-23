@@ -19,7 +19,6 @@ const createDrop = async (req, res) => {
 }
 
 const getDrops = async (req, res) => {
-    const { user } = req;
 
     const drops = await Drop.find({}).populate('author', 'username');
 
@@ -31,7 +30,13 @@ const getDrops = async (req, res) => {
 }
 
 const getDrop = async (req, res) => {
-    res.status(200).json({ message: "Get drop by id" });
+    const drop = await Drop.findById(req.params.id).populate('author');
+
+    if(drop) {
+        return res.status(200).json({ message: "Drop fetched", drop });
+    } else {
+        return res.status(400).json({ message: "Invalid drop data" });
+    }
 }
 
 module.exports = { createDrop, getDrops, getDrop };

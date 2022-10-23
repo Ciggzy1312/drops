@@ -6,7 +6,7 @@ const protect = require('../../middlewares/auth/authMiddleware');
 
 router.get('/', protect, getDrops);
 
-router.get('/:id', getDrop);
+router.get('/:id', protect, getDrop);
 
 router.post('/', protect, createDrop);
 
