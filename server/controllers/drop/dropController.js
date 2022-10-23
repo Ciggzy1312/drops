@@ -8,7 +8,7 @@ const createDrop = async (req, res) => {
     }
 
     const drop = await Drop.create({
-        name, description, tags
+        name, description, tags, author: req.user.id
     });
 
     if(drop) {
@@ -19,7 +19,15 @@ const createDrop = async (req, res) => {
 }
 
 const getDrops = async (req, res) => {
-    res.status(200).json({ message: "Get drops" });
+    const { user } = req;
+
+    const drops = await Drop.find({}).populate('author', 'username');
+
+    if(drops) {
+        return res.status(200).json({ message: "Drops fetched", drops });
+    } else {
+        return res.status(400).json({ message: "Invalid drop data" });
+    }
 }
 
 const getDrop = async (req, res) => {
