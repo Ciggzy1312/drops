@@ -20,7 +20,7 @@ const createDrop = async (req, res) => {
 
 const getDrops = async (req, res) => {
 
-    const drops = await Drop.find({}).populate('author', 'username');
+    const drops = await Drop.find({}).populate('author');
 
     if(drops) {
         return res.status(200).json({ message: "Drops fetched", drops });
