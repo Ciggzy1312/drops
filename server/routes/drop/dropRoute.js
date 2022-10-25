@@ -4,7 +4,7 @@ const router = express.Router();
 const { getDrop, getDrops, createDrop, updateDrop, deleteDrop } = require('../../controllers/drop/dropController');
 const { bookmarkDrop } = require('../../controllers/drop/dropBookmark');
 const { upvoteDrop } = require('../../controllers/drop/dropUpvote');
-const { addLink } = require('../../controllers/drop/dropLinks');
+const { addLink, deleteLink } = require('../../controllers/drop/dropLinks');
 
 const protect = require('../../middlewares/auth/authMiddleware');
 
@@ -23,5 +23,7 @@ router.patch('/:id/bookmark', protect, bookmarkDrop);
 router.patch('/:id/upvote', protect, upvoteDrop);
 
 router.patch('/:id/addLink', protect, addLink);
+
+router.patch('/:id/deleteLink', protect, deleteLink);
 
 module.exports = router;

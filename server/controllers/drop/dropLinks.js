@@ -44,4 +44,21 @@ const addLink = async (req, res) => {
     }
 }
 
-module.exports = { addLink };
+const deleteLink = async (req, res) => {
+    const { urlId } = req.body;
+
+    const drop = await Drop.findById(req.params.id);
+
+    if(!drop) {
+        return res.status(404).json({message: "Drop not found"});
+    }
+
+    if(drop.links.includes(urlId)) {
+        await drop.updateOne({ $pull: { links: urlId } });
+        return res.status(200).json({ message: 'Link deleted' });
+    } else {
+        return res.status(400).json({ message: 'Link does not exist' });
+    }
+}
+
+module.exports = { addLink, deleteLink };
