@@ -1,4 +1,5 @@
 const Drop = require('../../models/drop');
+const User = require('../../models/user');
 
 const createDrop = async (req, res) => {
     const { name, description, tags } = req.body;
@@ -11,7 +12,10 @@ const createDrop = async (req, res) => {
         name, description, tags, author: req.user.id
     });
 
+    const author = await User.findById(req.user.id);
+
     if(drop) {
+        await author.updateOne({ $push: { drops: drop._id } });
         return res.status(201).json({ message: "Drop created", drop });
     } else {
         return res.status(400).json({ message: "Invalid drop data" });
@@ -73,7 +77,14 @@ const deleteDrop = async (req, res) => {
 
     const deletedDrop = await Drop.findByIdAndDelete(req.params.id);
 
+    const author = await User.findById(req.user.id);
+
     if(drop) {
+
+        if(author.drops.includes(deletedDrop._id)) {
+            await author.updateOne({ $pull: { drops: deletedDrop._id } });
+        }
+        
         return res.status(200).json({ message: "Drop deleted", deletedDrop });
     } else {
         return res.status(400).json({ message: "Invalid drop data" });
