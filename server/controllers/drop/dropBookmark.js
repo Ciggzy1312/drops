@@ -11,6 +11,10 @@ const bookmarkDrop = async (req, res) => {
         return res.status(404).json({message: "Drop or User not found"});
     }
 
+    if (drop.author.toString() === req.user.id) {
+        return res.status(401).json({ message: "User cannot bookmark own drop" });
+    };
+
     if(drop.bookmarks.includes(user._id) && user.bookmarks.includes(drop._id)) {
         
         await drop.updateOne({$pull: {bookmarks: user._id}});
