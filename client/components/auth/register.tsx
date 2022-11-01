@@ -7,9 +7,21 @@ const RegisterForm : FC = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log(username)
+
+        const res = await fetch("http://localhost:5000/api/auth/register", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username, email, password
+            }),
+        });
+        const data = await res.json();
+        console.log(data)
     }
 
     return (
