@@ -1,3 +1,4 @@
+import axios from "axios"
 import Link from "next/link"
 import { FC, FormEvent, useState } from "react"
 
@@ -10,18 +11,10 @@ const RegisterForm : FC = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const res = await fetch("http://localhost:5000/api/auth/register", {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                username, email, password
-            }),
+        const res = await axios.post("http://localhost:5000/api/auth/register", {
+            username, email, password
         });
-        const data = await res.json();
-        console.log(data)
+        console.log(res.data)
     }
 
     return (

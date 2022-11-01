@@ -1,19 +1,19 @@
 import Link from "next/link"
 import { FC, FormEvent, useState } from "react"
+import axios from "axios"
 
 const LoginForm: FC = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log({
+        
+        const res = await axios.post("http://localhost:5000/api/auth/login", {
             email, password
-        })
-
-        setEmail("")
-        setPassword("")
+        }, { withCredentials: true });
+        console.log(res.data)
     }
 
     return (
