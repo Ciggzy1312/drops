@@ -1,7 +1,7 @@
 import { NextPage } from "next"
 import LoginForm from "../../components/auth/login"
 
-const lOGIN: NextPage = () => {
+const Login: NextPage = () => {
     return (
         <div className="">
             <LoginForm />
@@ -9,4 +9,4 @@ const lOGIN: NextPage = () => {
     )
 }
 
-export default lOGIN
+export default Login
