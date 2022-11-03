@@ -1,8 +1,11 @@
+import { useRouter } from "next/router"
 import Link from "next/link"
 import { FC, FormEvent, useState } from "react"
 import axios from "axios"
 
 const LoginForm: FC = () => {
+
+    const router = useRouter();
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -10,10 +13,12 @@ const LoginForm: FC = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         
-        const res = await axios.post("http://localhost:5000/api/auth/login", {
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}api/auth/login`, {
             email, password
         }, { withCredentials: true });
-        console.log(res.data)
+        console.log(res.data);
+
+        router.push("/dashboard");
     }
 
     return (

@@ -8,10 +8,12 @@ const RegisterForm : FC = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const res = await axios.post("http://localhost:5000/api/auth/register", {
+
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}api/auth/register`, {
             username, email, password
         });
         console.log(res.data)
