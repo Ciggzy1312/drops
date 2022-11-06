@@ -16,14 +16,13 @@ const Dashboard: NextPage<{data: DataType}> = ({data}) => {
     }
 
     //getData();
-    console.log(dropsState);
 
 
     return (
-        <div className="">
+        <div className="px-6">
             <h1>Dashboard</h1>
 
-            <div className="">
+            <div className="grid grid-cols-4 gap-4">
                 {dropsState.map((drop) => (
                     <div className="" key={drop._id}>
                         <DropCard drop={drop} />
