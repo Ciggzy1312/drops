@@ -4,6 +4,7 @@ import { DropType } from "../../types/types";
 import { format } from "timeago.js"
 import { BsTriangleFill } from "react-icons/bs";
 import bg from "../../public/No_14.jpg";
+import Link from "next/link";
 
 
 const DropCard: FC<{ drop: DropType }> = ({ drop }) => {
@@ -23,17 +24,17 @@ const DropCard: FC<{ drop: DropType }> = ({ drop }) => {
                 </div>
             </div>
 
-            <div className="text-xl font-bold">{drop.name}</div>
+            <div className="text-xl font-bold"><Link href={`/dashboard/${drop._id}`}>{drop.name}</Link></div>
 
             <div className="flex">
                 <div className="">
                     <Image className="rounded-full" src={drop.author.image ? drop.author.image : bg} width={30} height={30} alt=""/>
                 </div>
-                <div className="text-base self-center mx-2">Jane Appleseed</div>
+                <div className="text-base self-center mx-2">{drop.author.username}</div>
             </div>
 
 
-            <div className="text-xs text-neutral-500">These are the top resources I have collected to help you learn Javascript in the best possible and beginner friendly way These are the top resources I have collected to help you learn Javascript in the best possible and beginner friendly way...</div>
+            <div className="text-xs text-neutral-500">{drop.description.length < 100 ? drop.description : `${drop.description.substring(0, 100)}...`}</div>
 
             <div className="flex text-neutral-500 text-sm my-3 font-medium">
                 <div className="flex mr-4 space-x-1 text-[#443F3F]">
