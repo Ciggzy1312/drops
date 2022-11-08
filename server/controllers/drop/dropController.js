@@ -34,7 +34,7 @@ const getDrops = async (req, res) => {
 }
 
 const getDrop = async (req, res) => {
-    const drop = await Drop.findById(req.params.id).populate('author');
+    const drop = await Drop.findById(req.params.id).populate('links').populate('author');
 
     if(drop) {
         return res.status(200).json({ message: "Drop fetched", drop });
