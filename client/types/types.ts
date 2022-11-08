@@ -3,7 +3,7 @@ export type DropType = {
     name: string;
     description: string;
     author: UserType;
-    links: string[];
+    links: LinkType[];
     tags: string[];
     image: string | null;
     upvotes: string[] | null;
@@ -20,6 +20,16 @@ export type UserType = {
     bookmarks: string[] | null;
     drops: DropType[] | null;
 };
+
+export type LinkType = {
+    _id: string;
+    url: string;
+    title: string | null;
+    description: string | null;
+    image: string | null;
+    createdAt: string;
+    updatedAt: string;
+}
 
 export type DataType = {
     message: string;
