@@ -9,7 +9,7 @@ connectDB();
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: process.env.DEV_URL}));
+app.use(cors({ credentials: true, origin: ['https://drops-mauve.vercel.app/', 'http://localhost:3000'] }));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
