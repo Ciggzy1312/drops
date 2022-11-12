@@ -14,21 +14,9 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-app.use((res, req, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader(
-        'Access-Control-Allow-Headers',
-        'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-    );
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+//app.use(cors({ credentials: true, origin: 'https://drops-mauve.vercel.app/' }));
 
-    next();
-});
-
-app.use(cors())
-
-//app.use(cors({ credentials: true, origin: ['https://drops-mauve.vercel.app/', 'http://localhost:3000'], allowedHeaders: ['Content-Type', 'Authorization'] }));
+app.use(cors({ credentials: true, origin: ['https://drops-mauve.vercel.app', 'http://localhost:3000'], allowedHeaders: ['Content-Type', 'Authorization'] }));
 
 app.use('/api/auth', require('./routes/auth/authRoute'));
 app.use('/api/drop', require('./routes/drop/dropRoute'));
