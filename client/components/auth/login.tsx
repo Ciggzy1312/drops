@@ -13,7 +13,7 @@ const LoginForm: FC = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}api/auth/login`, {
+        const res = await axios.post(`/api/auth/login`, {
             email, password
         }, { withCredentials: true });
         console.log(res.data);
