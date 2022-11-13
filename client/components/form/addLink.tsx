@@ -2,7 +2,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import axios from 'axios'
 import { Dispatch, FC, Fragment, SetStateAction, useState } from 'react'
 
-const Form: FC<{ isOpen: boolean, setIsOpen: Dispatch<SetStateAction<boolean>>, id: string }> = ({ isOpen, setIsOpen, id }) => {
+const AddLink: FC<{ isOpen: boolean, setIsOpen: Dispatch<SetStateAction<boolean>>, id: string }> = ({ isOpen, setIsOpen, id }) => {
     const [url, setUrl] = useState("")
 
     const closeModal = () => {
@@ -78,4 +78,4 @@ const Form: FC<{ isOpen: boolean, setIsOpen: Dispatch<SetStateAction<boolean>>, 
     )
 }
 
-export default Form
+export default AddLink

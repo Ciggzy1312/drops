@@ -4,7 +4,7 @@ import { DropType } from "../../types/types";
 import { format } from "timeago.js";
 import { BsTriangleFill } from "react-icons/bs";
 import bg from "../../public/No_14.jpg";
-import Form from "../form";
+import AddLink from "../form/addLink";
 
 
 const DropPage: FC<{ drop: DropType }> = ({ drop }) => {
@@ -58,7 +58,7 @@ const DropPage: FC<{ drop: DropType }> = ({ drop }) => {
                 <div className="">
                     <button className="bg-indigo-500 rounded-md px-5 py-1 font-medium text-white" onClick={(e) => setIsOpen(!isOpen)}>Add link</button>
 
-                    {isOpen && <Form isOpen={isOpen} setIsOpen={setIsOpen} id={drop._id} />}
+                    {isOpen && <AddLink isOpen={isOpen} setIsOpen={setIsOpen} id={drop._id} />}
                 </div>
             </div>
 
@@ -76,6 +76,8 @@ const DropPage: FC<{ drop: DropType }> = ({ drop }) => {
                                 <img className="rounded object-contain" src={link.image} alt="Landscape picture" />
                             </picture>}
                         </div>
+
+                        
                     </div>
                 )) : <div className="text-gray-500 text-xl italic">You have not added any links</div>}
             </div>
