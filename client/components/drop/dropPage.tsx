@@ -5,11 +5,20 @@ import { format } from "timeago.js";
 import { BsTriangleFill } from "react-icons/bs";
 import bg from "../../public/No_14.jpg";
 import AddLink from "../form/addLink";
+import axios from "axios";
+import Link from "next/link";
 
 
 const DropPage: FC<{ drop: DropType }> = ({ drop }) => {
 
     const [isOpen, setIsOpen] = useState(false)
+
+    const deleteLink = async (urlId: string) => {
+        const res = await axios.patch(`/api/drop/${drop._id}/deleteLink`, {
+            urlId
+        });
+        console.log(res.data);
+    }
 
     return (
         <div className="flex-1 px-20 py-8">
@@ -37,7 +46,7 @@ const DropPage: FC<{ drop: DropType }> = ({ drop }) => {
                         <div className="">{format(drop.createdAt)}</div>
                     </div>
                 </div>
-                
+
                 <div className="flex">
                     <div className="mx-6 text-sky-500">Edit</div>
 
@@ -63,21 +72,25 @@ const DropPage: FC<{ drop: DropType }> = ({ drop }) => {
             </div>
 
             <div className="">
-                { drop.links.length ?  drop.links.map((link, index) => (
-                    <div className="my-6 flex justify-between h-44 border border-indigo-500 rounded-md px-4 py-2" key={index}>
-                        <div className="w-[60%]">
-                            <div className="font-semibold text-lg">{link.title}</div>
-                            <div className="text-[#443F3F] text-sm my-2">{link.description}</div>
+                {drop.links.length ? drop.links.map((link, index) => (
+                    <div className="flex flex-col justify-between my-6 min-h-[10rem] border border-indigo-500 rounded-md px-4 py-2" key={index}>
+                        <div className="flex justify-between" key={index}>
+                            <div className="w-[60%]">
+                                <div className="font-semibold text-lg"><Link href={link.url}>{link.title}</Link></div>
+                                <div className="text-[#443F3F] text-sm my-2">{link.description}</div>
+                            </div>
+
+                            <div className="w-1/4 overflow-hidden">
+                                {link.image && <picture>
+                                    <source srcSet={link.image} type="image/webp" />
+                                    <img className="rounded object-contain" src={link.image} alt="Landscape picture" />
+                                </picture>}
+                            </div>
                         </div>
 
-                        <div className="w-1/4 overflow-hidden">
-                            {link.image && <picture>
-                                <source srcSet={link.image} type="image/webp" />
-                                <img className="rounded object-contain" src={link.image} alt="Landscape picture" />
-                            </picture>}
+                        <div className="text-xs">
+                            <button className="text-red-600 font-medium" onClick={() => deleteLink(link._id)}>Delete Link</button>
                         </div>
-
-                        
                     </div>
                 )) : <div className="text-gray-500 text-xl italic">You have not added any links</div>}
             </div>
