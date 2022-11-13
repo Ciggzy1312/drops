@@ -1,12 +1,15 @@
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { DropType } from "../../types/types";
 import { format } from "timeago.js";
 import { BsTriangleFill } from "react-icons/bs";
 import bg from "../../public/No_14.jpg";
+import Form from "../form";
 
 
 const DropPage: FC<{ drop: DropType }> = ({ drop }) => {
+
+    const [isOpen, setIsOpen] = useState(false)
 
     return (
         <div className="flex-1 px-20 py-8">
@@ -53,12 +56,14 @@ const DropPage: FC<{ drop: DropType }> = ({ drop }) => {
                 <div className="text-2xl font-semibold">List of links</div>
 
                 <div className="">
-                    <button className="bg-indigo-500 rounded-md px-5 py-1 font-medium text-white">Add link</button>
+                    <button className="bg-indigo-500 rounded-md px-5 py-1 font-medium text-white" onClick={(e) => setIsOpen(!isOpen)}>Add link</button>
+
+                    {isOpen && <Form isOpen={isOpen} setIsOpen={setIsOpen} id={drop._id} />}
                 </div>
             </div>
 
             <div className="">
-                {drop.links.map((link, index) => (
+                { drop.links.length ?  drop.links.map((link, index) => (
                     <div className="my-6 flex justify-between h-44 border border-indigo-500 rounded-md px-4 py-2" key={index}>
                         <div className="w-[60%]">
                             <div className="font-semibold text-lg">{link.title}</div>
@@ -72,7 +77,7 @@ const DropPage: FC<{ drop: DropType }> = ({ drop }) => {
                             </picture>}
                         </div>
                     </div>
-                ))}
+                )) : <div className="text-gray-500 text-xl italic">You have not added any links</div>}
             </div>
         </div>
     )
