@@ -4,8 +4,9 @@ import { useState } from "react";
 import DropPage from "../../components/drop/dropPage";
 import Sidebar from "../../components/drop/sidebar";
 import { DropType } from "../../types/types";
+import jwt_decode from "jwt-decode";
 
-const Drop: NextPage<{data: DropType}> = ({data}) => {
+const Drop: NextPage<{data: DropType, token: string}> = ({data, token}) => {
 
     const [drop, setDrop] = useState(data);
     
@@ -13,7 +14,7 @@ const Drop: NextPage<{data: DropType}> = ({data}) => {
         <div className="">
 
             <div className="flex">
-                <DropPage drop={drop} />
+                <DropPage drop={drop} token={token} />
 
                 <Sidebar />
             </div>
@@ -25,7 +26,19 @@ export default Drop
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
+    interface myToken {
+        id: string;
+        username: string;
+        email: string;
+    }
+
     const { req, query } = context;
+
+    let decoded: string | undefined;
+    if(req.cookies.token) {
+        const { id } = jwt_decode<myToken>(req.cookies.token);
+        decoded = id;
+    }
 
     const val = await axios.get(`${process.env.NEXT_PUBLIC_URL}api/drop/${query.id}`, {
         headers: {
@@ -36,7 +49,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     return {
         props: {
-            data: val.data.drop
+            data: val.data.drop,
+            token: decoded ? decoded : "Invalid"
         }
     }
 }

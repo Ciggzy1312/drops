@@ -9,15 +9,27 @@ import axios from "axios";
 import Link from "next/link";
 
 
-const DropPage: FC<{ drop: DropType }> = ({ drop }) => {
+const DropPage: FC<{ drop: DropType, token: string }> = ({ drop, token }) => {
 
     const [isOpen, setIsOpen] = useState(false)
+    const [isUpvoted, setIsUpvoted] = useState(drop.upvotes?.includes(token) ? true : false)
+    const [upvotes, setUpvotes] = useState(drop.upvotes ? drop.upvotes.length : 0)
 
     const deleteLink = async (urlId: string) => {
         const res = await axios.patch(`/api/drop/${drop._id}/deleteLink`, {
             urlId
         });
         console.log(res.data);
+    }
+
+    const handleUpvote = async () => {
+        console.log("upvoted");
+
+        const res = await axios.patch(`/api/drop/${drop._id}/upvote`);
+        console.log(res.data);
+
+        setIsUpvoted(!isUpvoted);
+        setUpvotes(isUpvoted ? upvotes - 1 : upvotes + 1);
     }
 
     return (
@@ -36,9 +48,9 @@ const DropPage: FC<{ drop: DropType }> = ({ drop }) => {
             <div className="flex justify-between">
 
                 <div className="flex text-[#443F3F]">
-                    <div className="flex mr-4 space-x-1">
+                    <div className={`flex mr-4 space-x-1 cursor-pointer ${isUpvoted && "text-sky-600"}`} onClick={handleUpvote}>
                         <div className="self-center mr-0.5"><BsTriangleFill /></div>
-                        <div className="">{drop.upvotes ? drop.upvotes.length : 0}</div>
+                        <div className="">{upvotes}</div>
                         <div className="">upvotes</div>
                     </div>
 
