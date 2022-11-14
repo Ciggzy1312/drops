@@ -1,13 +1,25 @@
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { DropType } from "../../types/types";
 import { format } from "timeago.js"
 import { BsTriangleFill } from "react-icons/bs";
 import bg from "../../public/No_14.jpg";
 import Link from "next/link";
+import axios from "axios";
 
 
-const DropCard: FC<{ drop: DropType }> = ({ drop }) => {
+const DropCard: FC<{ drop: DropType, token: string }> = ({ drop, token }) => {
+
+    const [isUpvoted, setIsUpvoted] = useState(drop.upvotes?.includes(token) ? true : false)
+    const [upvotes, setUpvotes] = useState(drop.upvotes ? drop.upvotes.length : 0)
+
+    const handleUpvote = async () => {
+        const res = await axios.patch(`/api/drop/${drop._id}/upvote`);
+        console.log(res.data);
+
+        setIsUpvoted(!isUpvoted);
+        setUpvotes(isUpvoted ? upvotes - 1 : upvotes + 1);
+    }
 
     return (
         <div className="p-4 border-2 border-slate-200 bg-white rounded-md">
@@ -37,9 +49,9 @@ const DropCard: FC<{ drop: DropType }> = ({ drop }) => {
             <div className="text-xs text-neutral-500">{drop.description.length < 100 ? drop.description : `${drop.description.substring(0, 100)}...`}</div>
 
             <div className="flex text-neutral-500 text-sm my-3 font-medium">
-                <div className="flex mr-4 space-x-1 text-[#443F3F]">
+                <div className={`flex mr-4 space-x-1 text-[#443F3F] cursor-pointer ${isUpvoted && "text-sky-600"}`} onClick={handleUpvote}>
                     <div className="self-center mr-0.5"><BsTriangleFill /></div>
-                    <div className="">{drop.upvotes ? drop.upvotes.length : 0}</div>
+                    <div className="">{upvotes}</div>
                     <div className="">upvotes</div>
                 </div>
 
