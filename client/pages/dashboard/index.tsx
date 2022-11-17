@@ -4,6 +4,7 @@ import axios from "axios";
 import DropCard from "../../components/drop/dropCard";
 import { DataType, DropType } from "../../types/types";
 import jwt_decode from "jwt-decode";
+import SearchBar from "../../components/search";
 
 const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) => {
 
@@ -21,6 +22,10 @@ const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) =
     return (
         <div className="px-6">
             <h1>Dashboard</h1>
+
+            <div className="my-4">
+                <SearchBar />
+            </div>
 
             <div className="grid grid-cols-4 gap-4">
                 {dropsState.map((drop) => (
