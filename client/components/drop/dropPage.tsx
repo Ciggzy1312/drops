@@ -8,6 +8,7 @@ import AddLink from "../form/addLink";
 import axios from "axios";
 import Link from "next/link";
 import EditDrop from "../form/editDrop";
+import DeleteDrop from "../form/deleteDrop";
 
 
 const DropPage: FC<{ drop: DropType, token: string }> = ({ drop : d, token }) => {
@@ -72,7 +73,8 @@ const DropPage: FC<{ drop: DropType, token: string }> = ({ drop : d, token }) =>
                     </div>}
 
                     {token === drop.author._id && <div className="">
-                        <button className="text-red-500">Delete</button>
+                        <button className="text-red-500" onClick={() => setDeleteForm(!deleteForm)}>Delete</button>
+                        {deleteForm && <DeleteDrop isOpen={deleteForm} setIsOpen={setDeleteForm} id={drop._id} />}
                     </div>}
                 </div>
             </div>
