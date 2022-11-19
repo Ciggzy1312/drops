@@ -7,13 +7,19 @@ import bg from "../../public/No_14.jpg";
 import AddLink from "../form/addLink";
 import axios from "axios";
 import Link from "next/link";
+import EditDrop from "../form/editDrop";
 
 
-const DropPage: FC<{ drop: DropType, token: string }> = ({ drop, token }) => {
+const DropPage: FC<{ drop: DropType, token: string }> = ({ drop : d, token }) => {
+
+    const [drop, setDrop] = useState(d);
 
     const [isOpen, setIsOpen] = useState(false)
     const [isUpvoted, setIsUpvoted] = useState(drop.upvotes?.includes(token) ? true : false)
     const [upvotes, setUpvotes] = useState(drop.upvotes ? drop.upvotes.length : 0)
+
+    const [editForm, setEditForm] = useState(false)
+    const [deleteForm, setDeleteForm] = useState(false) 
 
     const deleteLink = async (urlId: string) => {
         const res = await axios.patch(`/api/drop/${drop._id}/deleteLink`, {
@@ -60,9 +66,14 @@ const DropPage: FC<{ drop: DropType, token: string }> = ({ drop, token }) => {
                 </div>
 
                 <div className="flex">
-                    <div className="mx-6 text-sky-500">Edit</div>
+                    {token === drop.author._id && <div className="mx-6">
+                        <button className="text-sky-500" onClick={() => setEditForm(!editForm)}>Edit</button>
+                        {editForm && <EditDrop drop={drop} setDrop={setDrop} isOpen={editForm} setIsOpen={setEditForm} id={drop._id} />}
+                    </div>}
 
-                    <div className="text-red-500">Delete</div>
+                    {token === drop.author._id && <div className="">
+                        <button className="text-red-500">Delete</button>
+                    </div>}
                 </div>
             </div>
 
