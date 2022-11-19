@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GetServerSideProps, NextPage } from "next";
 import axios from "axios";
 import DropCard from "../../components/drop/dropCard";
@@ -12,13 +12,31 @@ const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) =
     const [dropsState, setDropsState] = useState<DropType[]>(data.drops);
     const [isOpen, setIsOpen] = useState(false);
 
-    const getData = async () => {
-        const val = await axios.get(`${process.env.NEXT_PUBLIC_URL}api/drop`, { withCredentials: true });
-        console.log(val.data);
-        setDropsState(val.data.drops);
+    const [tags, setTags] = useState(['sports', 'technology', 'songs']);
+
+    const [selectedTag, setSelectedTag] = useState('');
+
+    const filterDrop = (tag: string) => {
+        if (tag === '') {
+            setDropsState(data.drops);
+        } else {
+            setDropsState(data.drops.filter(drop => drop.tags.includes(tag)));
+        }
     }
 
-    //getData();
+    const handleTag = (tag: string) => {
+        if(selectedTag !== tag) {
+            setSelectedTag(tag);
+        } else {
+            setSelectedTag('');
+        }
+    }
+
+    useEffect(() => {
+        filterDrop(selectedTag);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedTag]);
 
 
     return (
@@ -27,6 +45,14 @@ const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) =
 
             <div className="my-4 flex">
                 <SearchBar />
+            </div>
+
+            <div className="flex mt-8">
+                {tags.map((tag, index) => (
+                    <div className="mr-4" key={index}>
+                        <button className={`px-4 py-1 font-medium rounded-lg ${selectedTag == tag ? "bg-black text-white" : "bg-gray-300 text-neutral-600"}`} onClick={() => handleTag(tag)}>{tag}</button>
+                    </div>
+                ))}
             </div>
 
             <div className="my-4 flex justify-between">
