@@ -20,6 +20,7 @@ app.use(cors({ credentials: true, origin: ['https://drops-mauve.vercel.app', 'ht
 
 app.use('/api/auth', require('./routes/auth/authRoute'));
 app.use('/api/drop', require('./routes/drop/dropRoute'));
+app.use('/api/sidebar', require('./routes/sidebar/sidebarRoute'));
 
 app.listen(5000, () => {
     console.log('Listening on 5000....');
