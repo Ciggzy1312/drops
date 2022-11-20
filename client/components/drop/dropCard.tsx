@@ -10,6 +10,8 @@ import axios from "axios";
 
 const DropCard: FC<{ drop: DropType, token: string }> = ({ drop, token }) => {
 
+    console.log(drop)
+
     const [isUpvoted, setIsUpvoted] = useState(drop.upvotes?.includes(token) ? true : false)
     const [upvotes, setUpvotes] = useState(drop.upvotes ? drop.upvotes.length : 0)
 
@@ -31,8 +33,15 @@ const DropCard: FC<{ drop: DropType, token: string }> = ({ drop, token }) => {
             </div>
 
             <div className="my-4">
-                <div className="relative w-[65%] h-[120px]">
-                    <Image className="" src={bg} layout="fill" alt=""/>
+                <div className="relative w-[65%] h-[120px] overflow-hidden">
+                        {drop.links.length === 0 ? <>
+                            <Image className="" src={bg} layout="fill" alt="" />
+                        </> : <>
+                            <picture>
+                                <source srcSet={drop.links[0].image} type="image/webp" />
+                                <img className="rounded object-contain" src={drop.links[0].image} alt="Landscape picture" />
+                            </picture>
+                        </> }
                 </div>
             </div>
 

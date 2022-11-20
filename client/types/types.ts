@@ -26,7 +26,7 @@ export type LinkType = {
     url: string;
     title: string | null;
     description: string | null;
-    image: string | null;
+    image: string | undefined;
     createdAt: string;
     updatedAt: string;
 }
