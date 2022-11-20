@@ -6,7 +6,7 @@ import Sidebar from "../../components/drop/sidebar";
 import { DropType } from "../../types/types";
 import jwt_decode from "jwt-decode";
 
-const Drop: NextPage<{data: DropType, token: string}> = ({data, token}) => {
+const Drop: NextPage<{data: DropType, upvoted: DropType[], token: string}> = ({data, upvoted, token}) => {
 
     const [drop, setDrop] = useState(data);
     
@@ -16,7 +16,7 @@ const Drop: NextPage<{data: DropType, token: string}> = ({data, token}) => {
             <div className="flex">
                 <DropPage drop={drop} token={token} />
 
-                <Sidebar />
+                <Sidebar upvoted={upvoted} />
             </div>
         </div>
     )
@@ -47,9 +47,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         withCredentials: true
     });
 
+    const mostUpvoted = await axios.get(`${process.env.NEXT_PUBLIC_URL}api/sidebar/`, {
+        headers: {
+            cookie: req.headers.cookie
+        },
+        withCredentials: true
+    });
+
     return {
         props: {
             data: val.data.drop,
+            upvoted: mostUpvoted.data,
             token: decoded ? decoded : "Invalid"
         }
     }
