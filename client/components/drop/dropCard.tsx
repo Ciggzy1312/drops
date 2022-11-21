@@ -10,8 +10,6 @@ import axios from "axios";
 
 const DropCard: FC<{ drop: DropType, token: string }> = ({ drop, token }) => {
 
-    console.log(drop)
-
     const [isUpvoted, setIsUpvoted] = useState(drop.upvotes?.includes(token) ? true : false)
     const [upvotes, setUpvotes] = useState(drop.upvotes ? drop.upvotes.length : 0)
 
