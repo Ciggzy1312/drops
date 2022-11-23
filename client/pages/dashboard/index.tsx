@@ -6,6 +6,7 @@ import { DataType, DropType } from "../../types/types";
 import jwt_decode from "jwt-decode";
 import SearchBar from "../../components/search";
 import CreateDrop from "../../components/form/createDrop";
+import NavBar from "../../components/navbar";
 
 const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) => {
 
@@ -41,7 +42,7 @@ const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) =
 
     return (
         <div className="px-6">
-            <h1>Dashboard</h1>
+            <NavBar />
 
             <div className="my-4 flex">
                 <SearchBar />
