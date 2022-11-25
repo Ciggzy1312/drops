@@ -45,7 +45,7 @@ const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) =
             <NavBar />
 
             <div className="my-4 flex">
-                <SearchBar />
+                <SearchBar drops={data.drops} setDrops={setDropsState} />
             </div>
 
             <div className="flex mt-8">
