@@ -1,9 +1,39 @@
-import { FC } from "react";
+import axios from "axios";
+import { FC, useEffect, useState } from "react";
 import { DropType } from "../../types/types";
 
 
-const Sidebar: FC<{ upvoted: DropType[], dropByTags: DropType[] }> = ({ upvoted, dropByTags }) => {
-    console.log(dropByTags);
+const Sidebar: FC<{ drop: DropType }> = ({ drop }) => {
+
+    const [upvotedDrops, setUpvotedDrops] = useState<DropType[]>([]);
+    const [dropByTags, setDropByTags] = useState<DropType[]>([]);
+
+    const [loading, setLoading] = useState(true);
+    const [upvoteLoading, setUpvoteLoading] = useState(true);
+
+    const mostUpvoted = async () => {
+        const res = await axios.get('/api/sidebar');
+
+        setUpvotedDrops(res.data);
+        setUpvoteLoading(false);
+    };
+
+    const getDropByTags = async () => {
+        const res = await axios.post(`/api/sidebar/${drop._id}`, {
+            tag: drop.tags[Math.floor(Math.random() * drop.tags.length)]
+        });
+
+        setDropByTags(res.data);
+        setLoading(false);
+    } 
+
+    useEffect(() => {
+        mostUpvoted();
+        getDropByTags();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <div className="w-[28%] h-screen px-8 py-8 border-l-2 border-[#F3F3F3]">
 
@@ -17,7 +47,7 @@ const Sidebar: FC<{ upvoted: DropType[], dropByTags: DropType[] }> = ({ upvoted,
                 <div className="text-2xl font-semibold my-2">Top community picks</div>
 
                 <div className="my-2">
-                    {upvoted.map((drop) => (
+                    {loading? <span className="font-medium text-lg">Loading...</span> : upvotedDrops.map((drop) => (
                         <div className="border-2 border-neutral-200 rounded px-4 my-2 py-2 hover:bg-gray-200" key={drop._id}>
                             <div className="text-xl font-medium">{drop.name}</div>
                             <div className="">{drop.author.username}</div>
@@ -42,7 +72,7 @@ const Sidebar: FC<{ upvoted: DropType[], dropByTags: DropType[] }> = ({ upvoted,
                 <div className="text-2xl font-semibold my-2">Drops you might like</div>
 
                 <div className="my-2">
-                    {dropByTags.map((drop) => (
+                    {loading ? <span className="font-medium text-lg">Loading...</span> : dropByTags.map((drop) => (
                         <div className="border-2 border-neutral-200 rounded px-4 my-2 py-2 hover:bg-gray-200" key={drop._id}>
                             <div className="text-xl font-medium">{drop.name}</div>
                             <div className="">{drop.author.username}</div>
