@@ -7,6 +7,7 @@ import jwt_decode from "jwt-decode";
 import SearchBar from "../../components/search";
 import CreateDrop from "../../components/form/createDrop";
 import NavBar from "../../components/navbar";
+import { BsPlus } from "react-icons/bs";
 
 const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) => {
 
@@ -60,7 +61,10 @@ const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) =
 
             <div className="my-6 flex justify-between">
                 <div className="text-2xl font-semibold text-white">All resources</div>
-                <button className="bg-[#3F8DFD] rounded-md px-5 py-1 font-medium text-white" onClick={() => setIsOpen(!isOpen)}>Create Drop</button>
+                <button className="flex bg-[#3F8DFD] rounded-md pl-3 pr-5 py-1 font-medium text-white" onClick={() => setIsOpen(!isOpen)}>
+                    <div className="self-center mr-1.5 text-2xl"><BsPlus /></div>
+                    Create Drop
+                </button>
                 {isOpen && <CreateDrop isOpen={isOpen} setIsOpen={setIsOpen} />}
             </div>
 
