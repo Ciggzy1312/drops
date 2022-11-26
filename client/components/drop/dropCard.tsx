@@ -22,41 +22,41 @@ const DropCard: FC<{ drop: DropType, token: string }> = ({ drop, token }) => {
     }
 
     return (
-        <div className="p-4 border-2 border-slate-200 bg-white rounded-md">
+        <div className="p-4 bg-[#24282E] rounded-lg shadow-2xl">
             <div className="flex">
-                <div className="text-xs py-1 px-2 bg-gray-200 rounded-2xl font-semibold text-gray-600">{drop.tags[0]}</div>
-                <div className="text-xs py-1 px-2 font-semibold text-gray-600">
+                <div className="text-xs py-1 px-2 bg-[#545964] rounded-xl font-semibold text-[#BCC0C8]">{drop.tags[0]}</div>
+                <div className="text-xs py-1 px-2 font-semibold text-[#BCC0C8]">
                     {drop.tags.length > 1 ? ` +${drop.tags.length - 1}` : ``}
                 </div>
             </div>
 
             <div className="my-4">
-                <div className="relative w-[65%] h-[120px] overflow-hidden">
+                <div className="relative w-[65%] h-[7.5rem] overflow-hidden">
                         {drop.links.length === 0 ? <>
-                            <Image className="" src={bg} layout="fill" alt="" />
+                        <Image className="rounded object-cover" src={bg} layout="fill" alt="" />
                         </> : <>
                             <picture>
                                 <source srcSet={drop.links[0].image} type="image/webp" />
-                                <img className="rounded object-contain" src={drop.links[0].image} alt="Landscape picture" />
+                                <img className="rounded object-cover" src={drop.links[0].image} alt="Landscape picture" />
                             </picture>
                         </> }
                 </div>
             </div>
 
-            <div className="text-xl font-bold"><Link href={`/dashboard/${drop._id}`}>{drop.name}</Link></div>
+            <div className="text-xl text-white font-bold my-4"><Link href={`/dashboard/${drop._id}`}>{drop.name}</Link></div>
 
             <div className="flex">
                 <div className="">
-                    <Image className="rounded-full" src={drop.author.image ? drop.author.image : bg} width={30} height={30} alt=""/>
+                    <Image className="rounded-full" src={drop.author.image ? drop.author.image : bg} width={25} height={25} alt=""/>
                 </div>
-                <div className="text-base self-center mx-2">{drop.author.username}</div>
+                <div className="text-white mx-3">{drop.author.username}</div>
             </div>
 
 
-            <div className="text-xs text-neutral-500">{drop.description.length < 100 ? drop.description : `${drop.description.substring(0, 100)}...`}</div>
+            <div className="text-xs text-[#BCC0C8] my-2">{drop.description.length < 100 ? drop.description : `${drop.description.substring(0, 100)}...`}</div>
 
-            <div className="flex text-neutral-500 text-sm my-3 font-medium">
-                <div className={`flex mr-4 space-x-1 text-[#443F3F] cursor-pointer ${isUpvoted && "text-sky-600"}`} onClick={handleUpvote}>
+            <div className="flex justify-between text-[#A0A6B1] text-sm my-3 font-medium">
+                <div className={`flex mr-4 space-x-1 cursor-pointer ${isUpvoted && "text-[#28C87B]"}`} onClick={handleUpvote}>
                     <div className="self-center mr-0.5"><BsTriangleFill /></div>
                     <div className="">{upvotes}</div>
                     <div className="">upvotes</div>

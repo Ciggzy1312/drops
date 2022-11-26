@@ -41,8 +41,10 @@ const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) =
 
 
     return (
-        <div className="px-6">
-            <NavBar />
+        <div className="px-6 bg-[#131517] min-h-screen">
+            <div className="border-b border-gray-100 border-opacity-40">
+                <NavBar />
+            </div>
 
             <div className="my-4 flex">
                 <SearchBar drops={data.drops} setDrops={setDropsState} />
@@ -51,18 +53,18 @@ const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) =
             <div className="flex mt-8">
                 {tags.map((tag, index) => (
                     <div className="mr-4" key={index}>
-                        <button className={`px-4 py-1 font-medium rounded-lg ${selectedTag == tag ? "bg-black text-white" : "bg-gray-300 text-neutral-600"}`} onClick={() => handleTag(tag)}>{tag}</button>
+                        <button className={`px-4 py-1 font-medium rounded-lg hover:bg-[#24282E] ${selectedTag == tag ? "bg-[#24282E] text-white" : "bg-[#131517] text-[#A0A6B1]"}`} onClick={() => handleTag(tag)}>{tag}</button>
                     </div>
                 ))}
             </div>
 
-            <div className="my-4 flex justify-between">
-                <div className="text-2xl font-semibold">All resources</div>
-                <button className="bg-indigo-500 rounded-md px-5 py-1 font-medium text-white" onClick={() => setIsOpen(!isOpen)}>Create Drop</button>
+            <div className="my-6 flex justify-between">
+                <div className="text-2xl font-semibold text-white">All resources</div>
+                <button className="bg-[#3F8DFD] rounded-md px-5 py-1 font-medium text-white" onClick={() => setIsOpen(!isOpen)}>Create Drop</button>
                 {isOpen && <CreateDrop isOpen={isOpen} setIsOpen={setIsOpen} />}
             </div>
 
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-4 gap-x-8">
                 {dropsState.map((drop) => (
                     <div className="" key={drop._id}>
                         <DropCard drop={drop} token={token} />
