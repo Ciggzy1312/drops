@@ -117,7 +117,7 @@ const DropPage: FC<{ drop: DropType, token: string }> = ({ drop : d, token }) =>
                         </div>
 
                         <div className="text-xs">
-                            <button className="text-red-600 font-medium" onClick={() => deleteLink(link._id)}>Delete Link</button>
+                            <button className="text-[#fa4f56] font-medium" onClick={() => deleteLink(link._id)}>Delete Link</button>
                         </div>
                     </div>
                 )) : <div className="text-[#A0A6B1] text-2xl italic">You have not added any links</div>}

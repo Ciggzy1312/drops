@@ -20,9 +20,9 @@ const DropCard: FC<{ drop: DropType, token: string }> = ({ drop, token }) => {
         setIsUpvoted(!isUpvoted);
         setUpvotes(isUpvoted ? upvotes - 1 : upvotes + 1);
     }
-
+    
     return (
-        <div className="p-4 bg-[#24282E] rounded-lg shadow-2xl">
+        <div className="p-4 bg-[#1A1C1E] rounded-lg shadow-2xl drop-shadow-2xl">
             <div className="flex">
                 <div className="text-xs py-1 px-2 bg-[#545964] rounded-xl font-semibold text-[#BCC0C8]">{drop.tags[0]}</div>
                 <div className="text-xs py-1 px-2 font-semibold text-[#BCC0C8]">
@@ -31,7 +31,7 @@ const DropCard: FC<{ drop: DropType, token: string }> = ({ drop, token }) => {
             </div>
 
             <div className="my-4">
-                <div className="relative w-[65%] h-[7.5rem] overflow-hidden">
+                <div className="relative w-[15.625rem] h-[7.875rem] overflow-hidden">
                         {drop.links.length === 0 ? <>
                         <Image className="rounded object-cover" src={bg} layout="fill" alt="" />
                         </> : <>
