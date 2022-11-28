@@ -66,9 +66,9 @@ const DropPage: FC<{ drop: DropType, token: string }> = ({ drop : d, token }) =>
                     </div>
                 </div>
 
-                <div className="flex">
+                <div className="flex font-medium">
                     {token === drop.author._id && <div className="mx-6">
-                        <button className="text-sky-500" onClick={() => setEditForm(!editForm)}>Edit</button>
+                        <button className="text-[#73ACFF]" onClick={() => setEditForm(!editForm)}>Edit</button>
                         {editForm && <EditDrop drop={drop} setDrop={setDrop} isOpen={editForm} setIsOpen={setEditForm} id={drop._id} />}
                     </div>}
 
@@ -117,7 +117,7 @@ const DropPage: FC<{ drop: DropType, token: string }> = ({ drop : d, token }) =>
                         </div>
 
                         <div className="text-xs">
-                            <button className="text-[#fa4f56] font-medium" onClick={() => deleteLink(link._id)}>Delete Link</button>
+                            <button className="text-red-500 hover:text-[#fa1921] font-medium" onClick={() => deleteLink(link._id)}>Delete Link</button>
                         </div>
                     </div>
                 )) : <div className="text-[#A0A6B1] text-2xl italic">You have not added any links</div>}
