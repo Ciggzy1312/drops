@@ -35,24 +35,23 @@ const Sidebar: FC<{ drop: DropType }> = ({ drop }) => {
     }, []);
 
     return (
-        <div className="w-[28%] h-screen px-8 py-8 border-l-2 border-[#F3F3F3]">
+        <div className="w-[28%] h-screen px-8 py-8 border-l border-[#A0A6B1]">
 
-            <div className="">
+            {/*<div className="">
                 <div className="text-2xl font-semibold my-2">Share what you found</div>
 
                 <div className="">Social icons</div>
-            </div>
+            </div>*/}
 
-            <div className="py-2">
-                <div className="text-2xl font-semibold my-2">Top community picks</div>
+            <div className="border rounded-lg">
+                <div className="text-2xl font-semibold my-2 mx-6 text-white">Top community picks</div>
 
                 <div className="my-2">
-                    {loading? <span className="font-medium text-lg">Loading...</span> : upvotedDrops.map((drop) => (
-                        <div className="border-2 border-neutral-200 rounded px-4 my-2 py-2 hover:bg-gray-200" key={drop._id}>
-                            <div className="text-xl font-medium">{drop.name}</div>
-                            <div className="">{drop.author.username}</div>
+                    {loading ? <span className="font-medium px-6 text-white text-lg">Loading...</span> : upvotedDrops.map((drop) => (
+                        <div className="rounded px-6 py-2 hover:bg-[#24282E]" key={drop._id}>
+                            <div className="text-xl text-[#BCC0C8] font-medium my-1">{drop.name}</div>
 
-                            <div className="flex text-sm text-[#443F3F]">
+                            <div className="flex text-sm font-medium text-[#545964]">
                                 <div className="flex space-x-2 mr-8">
                                     <div className="">{drop.upvotes ? drop.upvotes.length : 0}</div>
                                     <div className="">Upvotes</div>
@@ -68,16 +67,15 @@ const Sidebar: FC<{ drop: DropType }> = ({ drop }) => {
                 </div>
             </div>
 
-            <div className="">
-                <div className="text-2xl font-semibold my-2">Drops you might like</div>
+            <div className="mt-12 border rounded-lg">
+                <div className="text-2xl font-semibold my-2 mx-6 text-white">Drops you might like</div>
 
                 <div className="my-2">
-                    {loading ? <span className="font-medium text-lg">Loading...</span> : dropByTags.map((drop) => (
-                        <div className="border-2 border-neutral-200 rounded px-4 my-2 py-2 hover:bg-gray-200" key={drop._id}>
-                            <div className="text-xl font-medium">{drop.name}</div>
-                            <div className="">{drop.author.username}</div>
+                    {loading ? <span className="font-medium px-6 text-white text-lg">Loading...</span> : dropByTags.map((drop) => (
+                        <div className="rounded px-6 py-2 hover:bg-[#24282E]" key={drop._id}>
+                            <div className="text-xl text-[#BCC0C8] font-medium my-1">{drop.name}</div>
 
-                            <div className="flex text-sm text-[#443F3F]">
+                            <div className="flex text-sm font-medium text-[#545964]">
                                 <div className="flex space-x-2 mr-8">
                                     <div className="">{drop.upvotes ? drop.upvotes.length : 0}</div>
                                     <div className="">Upvotes</div>
