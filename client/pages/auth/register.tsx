@@ -3,7 +3,7 @@ import RegisterForm from "../../components/auth/register"
 
 const Register: NextPage = () => {
     return (
-        <div className="">
+        <div className="bg-[#131517] min-h-screen">
             <RegisterForm />
         </div>
     )
