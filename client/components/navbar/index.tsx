@@ -16,9 +16,9 @@ const NavBar: FC = () => {
     }
 
     return (
-        <div className="flex justify-between py-3 border-b-2 border-gray-100">
+        <div className="flex justify-between py-3">
             <div className="">
-                <span className="text-3xl font-bold text-indigo-500 tracking-wider">Drops</span>
+                <span className="text-3xl font-bold text-[#3F8DFD] tracking-wider">Drops</span>
             </div>
 
             <div className="flex">
