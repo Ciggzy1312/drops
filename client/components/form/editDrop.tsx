@@ -22,7 +22,7 @@ const EditDrop: FC<{ drop: DropType, setDrop: Dispatch<SetStateAction<DropType>>
             });
             console.log(res.data);
 
-            setDrop(res.data.updatedDrop);
+            //setDrop(res.data.updatedDrop);
         }
 
         setIsOpen(false)
