@@ -35,7 +35,7 @@ const Sidebar: FC<{ drop: DropType }> = ({ drop }) => {
     }, []);
 
     return (
-        <div className="w-[28%] h-screen px-8 py-8 border-l border-[#A0A6B1]">
+        <div className="w-[28%] fixed right-0 h-screen px-8 py-8 border-l border-[#A0A6B1]">
 
             {/*<div className="">
                 <div className="text-2xl font-semibold my-2">Share what you found</div>

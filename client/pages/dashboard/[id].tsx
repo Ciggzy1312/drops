@@ -11,7 +11,7 @@ const Drop: NextPage<{data: DropType, token: string}> = ({data, token}) => {
     const [drop, setDrop] = useState(data);
     
     return (
-        <div className="bg-[#131517]">
+        <div className="bg-[#131517] min-h-screen">
 
             <div className="flex">
                 <DropPage drop={drop} token={token} />

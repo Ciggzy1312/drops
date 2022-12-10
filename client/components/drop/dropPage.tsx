@@ -40,7 +40,7 @@ const DropPage: FC<{ drop: DropType, token: string }> = ({ drop : d, token }) =>
     }
 
     return (
-        <div className="flex-1 px-20 py-8">
+        <div className="flex-1 mr-[28%] px-20 py-8">
             <div className="text-4xl font-bold my-2 text-white">{drop.name}</div>
 
             <div className="flex my-2">
