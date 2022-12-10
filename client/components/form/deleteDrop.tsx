@@ -33,7 +33,7 @@ const DeleteDrop: FC<{ isOpen: boolean, setIsOpen: Dispatch<SetStateAction<boole
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <div className="fixed inset-0 bg-black bg-opacity-25" />
+                        <div className="fixed inset-0 bg-black bg-opacity-80" />
                     </Transition.Child>
 
                     <div className="fixed inset-0 overflow-y-auto">
@@ -47,19 +47,19 @@ const DeleteDrop: FC<{ isOpen: boolean, setIsOpen: Dispatch<SetStateAction<boole
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-[#131517] p-6 text-left align-middle shadow-xl transition-all">
                                     <Dialog.Title
                                         as="h3"
-                                        className="text-lg text-center font-medium leading-6 text-gray-900"
+                                        className="text-lg text-center font-medium leading-6 text-white"
                                     >
                                         Are you sure you want to delete this Drop?
                                     </Dialog.Title>
-                                    <div className="mt-4 flex justify-center">
-                                        <div className='mx-4 px-3 py-1 text-red-500 bg-neutral-100 font-medium rounded-md'>
+                                    <div className="mt-6 flex justify-center">
+                                        <div className='mx-6 px-3 py-1 text-white bg-red-500 hover:bg-[#fa1921] font-medium rounded-md'>
                                             <button className='' onClick={deleteDrop}>Yes, I am sure</button>
                                         </div>
 
-                                        <div className='mx-4 px-3 py-1 text-indigo-500 bg-neutral-100 font-medium rounded-md'>
+                                        <div className='mx-6 px-3 py-1 text-white hover:bg-[#1877FF] bg-[#3F8DFD] font-medium rounded-md'>
                                             <button className='' onClick={closeModal}>No, let&apos;s return</button>
                                         </div>
                                     </div>

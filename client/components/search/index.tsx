@@ -17,9 +17,9 @@ const SearchBar: FC<{ drops: DropType[], setDrops: Dispatch<SetStateAction<DropT
 
     return (
         <div className="flex-grow">
-            <input className="px-2 py-1 border border-gray-400 w-1/4 rounded-l-md focus:outline-none" type="text" placeholder="Search for drops" value={search} onChange={(e) => setSearch(e.target.value)} />
+            <input className="px-2 py-1 border border-[#252728] bg-[#252728] w-1/4 rounded-l-md text-white focus:outline-none" type="text" placeholder="Search for drops" value={search} onChange={(e) => setSearch(e.target.value)} />
 
-            <button className="text-white px-4 py-1 border border-black bg-black rounded-r-md" onClick={handleSearch} >Search</button>
+            <button className="text-white px-4 py-1 border border-[#3F8DFD] bg-[#3F8DFD] rounded-r-md" onClick={handleSearch} >Search</button>
         </div>
     )
 }
