@@ -8,7 +8,7 @@ const CreateDrop: FC<{ isOpen: boolean, setIsOpen: Dispatch<SetStateAction<boole
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [dropTags, setDropTags] = useState<string[]>([])
-    const [tags, setTags] = useState(['sports', 'technology', 'songs'])
+    const [tags, setTags] = useState(['Javascript', 'Open Source', 'Kubernetes', 'CNCF', 'Golang', 'Database', 'Cloud Computing', 'Linux', 'AWS', 'Docker', 'Typescript', 'Python', 'Rust', 'Microservices', 'React', 'Server', 'Miscellaneous'])
 
     const closeModal = () => {
         setIsOpen(false)

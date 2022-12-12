@@ -9,7 +9,7 @@ const EditDrop: FC<{ drop: DropType, setDrop: Dispatch<SetStateAction<DropType>>
     const [name, setName] = useState(drop.name)
     const [description, setDescription] = useState(drop.description)
     const [dropTags, setDropTags] = useState<string[]>(drop.tags)
-    const [tags, setTags] = useState(['sports', 'technology', 'songs'])
+    const [tags, setTags] = useState(['Javascript', 'Open Source', 'Kubernetes', 'CNCF', 'Golang', 'Database', 'Cloud Computing', 'Linux', 'AWS', 'Docker', 'Typescript', 'Python', 'Rust', 'Microservices', 'React', 'Server', 'Miscellaneous'])
 
     const closeModal = () => {
         setIsOpen(false)
@@ -83,9 +83,9 @@ const EditDrop: FC<{ drop: DropType, setDrop: Dispatch<SetStateAction<DropType>>
 
                                         <div className="py-2">
                                             <label className="text-sm text-white">Tags</label>
-                                            <div className='flex pt-2'>
+                                            <div className='flex pt-2 flex-wrap'>
                                                 {tags.map((tag, i) => (
-                                                    <div className='mr-2' key={i}>
+                                                    <div className='mr-3 mb-3' key={i}>
                                                         <button className={`bg-[#24282E] rounded-md px-2 py-0.5 ${dropTags.includes(tag) ? 'border border-white text-white' : 'text-[#A0A6B1] border border-[#24282E]'}`} onClick={() => handleTag(tag)}>{tag}</button>
                                                     </div>
                                                 ))}

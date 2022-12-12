@@ -14,7 +14,7 @@ const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) =
     const [dropsState, setDropsState] = useState<DropType[]>(data.drops);
     const [isOpen, setIsOpen] = useState(false);
 
-    const [tags, setTags] = useState(['sports', 'technology', 'songs']);
+    const [tags, setTags] = useState(['Javascript', 'Open Source', 'Kubernetes', 'CNCF', 'Golang', 'Database', 'Cloud Computing', 'Linux', 'AWS', 'Docker', 'Typescript', 'Python', 'Rust', 'Microservices', 'React', 'Server', 'Miscellaneous']);
 
     const [selectedTag, setSelectedTag] = useState('');
 

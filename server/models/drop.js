@@ -22,7 +22,7 @@ const dropSchema = new mongoose.Schema({
     }],
     tags: [{
         type: String,
-        enum: ['technology', 'sports', 'songs']
+        enum: ['Javascript', 'Open Source', 'Kubernetes', 'CNCF', 'Golang', 'Database', 'Cloud Computing', 'Linux', 'AWS', 'Docker', 'Typescript', 'Python', 'Rust', 'Microservices', 'React', 'Server', 'Miscellaneous']
     }],
     upvotes: [{
         type: String,

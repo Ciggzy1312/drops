@@ -43,7 +43,7 @@ const DropCard: FC<{ drop: DropType, token: string }> = ({ drop, token }) => {
                 </div>
             </div>
 
-            <div className="text-xl text-white font-bold my-4"><Link href={`/dashboard/${drop._id}`}>{drop.name}</Link></div>
+            <div className="text-xl text-white font-bold my-4"><Link href={`/dashboard/${drop._id}`}>{drop.name.length < 30 ? drop.name : `${drop.name.substring(0, 35)}...`}</Link></div>
 
             <div className="flex">
                 <div className="">
