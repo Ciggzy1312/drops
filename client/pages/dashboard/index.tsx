@@ -8,6 +8,7 @@ import SearchBar from "../../components/search";
 import CreateDrop from "../../components/form/createDrop";
 import NavBar from "../../components/navbar";
 import { BsPlus } from "react-icons/bs";
+import { AiFillCaretRight, AiFillCaretLeft } from "react-icons/ai";
 
 const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) => {
 
@@ -17,6 +18,9 @@ const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) =
     const [tags, setTags] = useState(['Javascript', 'Open Source', 'Kubernetes', 'CNCF', 'Golang', 'Database', 'Cloud Computing', 'Linux', 'AWS', 'Docker', 'Typescript', 'Python', 'Rust', 'Microservices', 'React', 'Server', 'Miscellaneous']);
 
     const [selectedTag, setSelectedTag] = useState('');
+
+    const [startTag, setStartTag] = useState(0);
+    const [endTag, setEndTag] = useState(12);
 
     const filterDrop = (tag: string) => {
         if (tag === '') {
@@ -31,6 +35,20 @@ const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) =
             setSelectedTag(tag);
         } else {
             setSelectedTag('');
+        }
+    }
+
+    const changeTag = (direction: string) => {
+        if(direction === 'left') {
+            if(startTag > 0) {
+                setStartTag(startTag - 1);
+                setEndTag(endTag - 1);
+            }
+        } else {
+            if(endTag < tags.length) {
+                setStartTag(startTag + 1);
+                setEndTag(endTag + 1);
+            }
         }
     }
 
@@ -51,13 +69,21 @@ const Dashboard: NextPage<{ data: DataType, token: string }> = ({data, token}) =
                 <SearchBar drops={data.drops} setDrops={setDropsState} />
             </div>
 
-            <div className="flex mt-8">
-                {tags.map((tag, index) => (
-                    <div className="mr-4" key={index}>
-                        <button className={`px-4 py-1 font-medium rounded-lg hover:bg-[#24282E] ${selectedTag == tag ? "bg-[#24282E] text-white" : "bg-[#131517] text-[#A0A6B1]"}`} onClick={() => handleTag(tag)}>{tag}</button>
-                    </div>
-                ))}
+            <div className="flex flex-auto mt-8">
+
+                <div className="self-center text-2xl font-semibold text-white rounded-full cursor-pointer" onClick={() => changeTag('left')}><AiFillCaretLeft /></div>
+
+                <div className="flex flex-grow justify-between">
+                    {tags.slice(startTag,endTag).map((tag, index) => (
+                        <div className="mx-4" key={index}>
+                            <button className={`px-4 py-1 font-medium rounded-lg hover:bg-[#24282E] ${selectedTag == tag ? "bg-[#24282E] text-white" : "bg-[#131517] text-[#A0A6B1]"}`} onClick={() => handleTag(tag)}>{tag}</button>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="self-center text-2xl font-semibold text-white rounded-full cursor-pointer" onClick={() => changeTag('right')}><AiFillCaretRight /></div>
             </div>
+
 
             <div className="my-6 flex justify-between">
                 <div className="text-2xl font-semibold text-white">All resources</div>
