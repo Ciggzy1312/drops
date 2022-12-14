@@ -61,12 +61,12 @@ Demo video -> Coming soon!!!
 
 #### Client
 
-Change into the client folder : `cd client`
-Install dependencies : `npm install`
-Start the client : `npm run dev`
+- Change into the client folder : `cd client`
+- Install dependencies : `npm install`
+- Start the client : `npm run dev`
 
 #### Server
 
-Change into the server folder : `cd server`
-Install dependencies : `npm install`
-Start the server : `node index.js`
+- Change into the server folder : `cd server`
+- Install dependencies : `npm install`
+- Start the server : `node index.js`
