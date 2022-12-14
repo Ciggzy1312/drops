@@ -20,14 +20,6 @@ Demo video -> Coming soon!!!
 - Edit/Delete Resources
 - Add/Delete Resources to Collections
 
-#### Future Plans
-
-- Library Page for user to view all their collections
-- Bookmark Collections Feature
-- About page for user profile details
-- Image upload in user registration
-- UI Improvements
-
 ## Screenshots
 
 #### Register Page 
@@ -41,6 +33,14 @@ Demo video -> Coming soon!!!
 
 #### Single Collection Page
 ![SinglePage](https://user-images.githubusercontent.com/65884232/207628657-de6365f1-d833-46c9-9a28-ddb19723775b.png)
+
+#### Future Plans
+
+- Library Page for user to view all their collections
+- Bookmark Collections Feature
+- About page for user profile details
+- Image upload in user registration
+- UI Improvements
 
 ## Tech Stack
 
@@ -59,3 +59,14 @@ Demo video -> Coming soon!!!
 
 ## Contributing
 
+#### Client
+
+Change into the client folder : `cd client`
+Install dependencies : `npm install`
+Start the client : `npm run dev`
+
+#### Server
+
+Change into the server folder : `cd server`
+Install dependencies : `npm install`
+Start the server : `node index.js`
