@@ -4,9 +4,9 @@ Wanting to learn a new technology and getting overwhelmed because of so many res
 
 ## Usage
 
-Deployed link -> 
+Deployed link -> https://drops-mauve.vercel.app/
 
-Demo video -> 
+Demo video -> Coming soon!!!
 
 **Note** -> On adding some URL the page might not show any image, title or description. It is because the metadata of the given URL cannot be scraped. So adding such URL is not recommended. A new feature of adding custom data to counter this will be coming soon.
 
@@ -29,6 +29,18 @@ Demo video ->
 - UI Improvements
 
 ## Screenshots
+
+#### Register Page 
+![Register](https://user-images.githubusercontent.com/65884232/207628278-ab2d3097-bef0-4678-abc9-8f0bafd6a097.png)
+
+#### Login Page
+![Login](https://user-images.githubusercontent.com/65884232/207628592-0b698647-1a06-43e7-b0d4-0ae08c31f351.png)
+
+#### Dashboard Page
+![Dashboard](https://user-images.githubusercontent.com/65884232/207628633-bee2810e-8d00-4b67-a0d7-46e16960c12e.png)
+
+#### Single Collection Page
+![SinglePage](https://user-images.githubusercontent.com/65884232/207628657-de6365f1-d833-46c9-9a28-ddb19723775b.png)
 
 ## Tech Stack
 
